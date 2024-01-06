@@ -1,6 +1,8 @@
 import pygame
 from settings import *
-from pygame.image import load as pygame_image_load
+from support import *
+
+from pygame.image import load
 
 from editor import Editor
 
@@ -12,11 +14,13 @@ class Main:
 
 		self.editor = Editor()
 
-	#cursor
-		surf = pygame_image_load('graphics/cursors/mouse.png')
+		# cursor 
+		surf = load('graphics/cursors/mouse.png').convert_alpha()
 		cursor = pygame.cursors.Cursor((0,0), surf)
 		pygame.mouse.set_cursor(cursor)
 
+	def imports(self):
+		self.land_tiles = import_folder_dict('graphics/terrain/land')
 
 	def run(self):
 		while True:
@@ -28,4 +32,4 @@ class Main:
 
 if __name__ == '__main__':
 	main = Main()
-	main.run() 
+	main.run() 	
